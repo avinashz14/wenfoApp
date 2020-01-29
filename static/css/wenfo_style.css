@@ -1,0 +1,484 @@
+body {
+    color: #fff;
+    
+    font-family: 'Roboto', sans-serif;
+  }
+  .form-control, .form-control:focus, .input-group-addon {
+    border-color: #e1e1e1;
+  }
+    .form-control, .btn {        
+        border-radius: 3px;
+    }
+  .signup-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 30px 0;
+  }
+
+  .signin-form{
+     width: 400px;
+    margin: 0 auto;
+    padding: 30px 0;
+  }
+    .signup-form form {
+    color: #999;
+    border-radius: 3px;
+      margin-bottom: 15px;
+        background: #fff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+  .signup-form h2 {
+    color: #333;
+    font-weight: bold;
+        margin-top: 0;
+    }
+    .signup-form hr {
+        margin: 0 -30px 20px;
+    }
+  .signup-form .form-group {
+    margin-bottom: 20px;
+  }
+  .signup-form label {
+    font-weight: normal;
+    font-size: 13px;
+  }
+  .signup-form .form-control {
+    min-height: 38px;
+    box-shadow: none !important;
+  } 
+  .signup-form .input-group-addon {
+    max-width: 42px;
+    text-align: center;
+  }
+  .signup-form input[type="checkbox"] {
+    margin-top: 2px;
+  }   
+    .signup-form .btn{        
+        font-size: 16px;
+        font-weight: bold;
+    background: #C0375B  ;
+    border: none;
+    min-width: 100%;
+    }
+  .signup-form .btn:hover, .signup-form .btn:focus {
+    background: #C0375B;
+        outline: none;
+  }
+  .signup-form a {
+    color: #fff;  
+    text-decoration: underline;
+  }
+  .signup-form a:hover {
+    text-decoration: none;
+  }
+  .signup-form form a {
+    color: #C0375B  ;
+    text-decoration: none;
+  } 
+  .signup-form form a:hover {
+    text-decoration: underline;
+  }
+  .signup-form .fa {
+    font-size: 21px;
+  }
+  .signup-form .fa-paper-plane {
+    font-size: 18px;
+  }
+  .signup-form .fa-check {
+    color: #fff;
+    left: 17px;
+    top: 18px;
+    font-size: 7px;
+    position: absolute;
+  }
+
+  .form_heading{
+    text-align: center;
+    color: #C0375B !important;;
+  }
+
+  .signup_body{
+    background: #C0375B;
+  }
+
+  .signin_btn{
+    min-width: 100% !important;
+  }
+
+  /*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    position: fixed;
+    left: 250px;
+    z-index: 1000;
+    overflow-y: auto;
+    margin-left: -250px;
+    width: 0;
+    height: 100%;
+    background: #ddd;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    padding: 15px;
+    width: 100%;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: relative;/*absolute*/
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 12px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    color: #444;
+    text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+    background: #C0375B;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    background: none;
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.img_circle{
+  border-radius: 50%;
+}
+
+.navbar-inverse {
+    background-color: #C0375B;
+    border-color: #C0375B;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff !important;
+    font-weight: 700 !important;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 15px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: transparent;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #C0375B ;
+    border-color: #C0375B ;
+}
+
+.sidebar_profile{
+    display: block;
+    max-width: 250px;
+    width: 100%;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.sidebar_createprofile{
+  display: block;
+  text-align: center;
+}
+
+.btn_create{
+    padding: 7px 15px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    color: #C0375B;
+    font-weight: 700;
+
+}
+
+ h1 {
+    font-size: 36px;
+    color: #444;
+}
+
+.content-wrapper {
+    margin-top: 70px;
+    border-top: 3px solid #C0375B;
+}
+
+.box_shadow{
+  box-shadow: 10px 10px 61px -20px rgba(138,131,138,1);
+}
+.box_shadow_left{
+border-left: 1px solid #ddd;
+    background: #f5f5f5;
+}
+
+ .rightsidebar-nav{
+     width: 100%;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+ }
+
+ .rightsidebar-nav li a {
+    display: block;
+    color: #444;
+    text-decoration: none;
+}
+
+.rightsidebar-nav li {
+    text-indent: 12px;
+    line-height: 40px;
+}
+
+.rightsidebar-nav li a:hover {
+    background: #C0375B;
+    color: #fff;
+    text-decoration: none;
+}
+
+.profile_title{
+  color: #444;
+}
+
+.profile_content{
+  color:#887a7a;
+}
+
+.profile_image{
+  height: 100%;
+  width:100%;
+  border-radius: 12px;
+}
+
+.profile_contact{
+  color: #444;
+    font-size: 14px;
+}
+
+.ooverflow_content{
+  overflow-y: scroll;
+    min-height: 100%;
+    height: 500px;}
+
+
+.card {
+   background-color: white;
+   padding: 20px;
+   
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+p {
+    color: #444;
+    margin: 0 0 10px;
+}
+
+h1,h2,h3,h4,h5,h6{
+  color: #444;
+}
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 300px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 12px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+  height: 300px;
+}
+
+.input_group{
+  margin: 20px 10px;
+}
+
+.form_label{
+  width: 100%;
+    color: #444;
+    font-weight: 700;
+}
+
+.form_control{
+  width: 100%;
+    padding: 7px 15px;
+    color:#444;
+}
+
+.btn_submit{
+  margin: 10px auto;
+    float: right;
+    padding: 6px 20px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: #C0375B;
+    font-weight: 700;
+}
+
+.table_border{
+  border-collapse: collapse;
+  width: 100%;
+}

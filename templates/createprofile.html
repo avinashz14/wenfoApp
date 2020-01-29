@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+      <title>Wenfo</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{% static 'css/wenfo_style.css' %}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+      <style type="text/css">
+      </style>
+   </head>
+   <body>
+      <div class="container"></div>
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#menu-toggle" id="menu-toggle">
+                  <!-- <span class="glyphicon glyphicon-list" aria-hidden="true"></span> -->
+                  <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" class="img_circle" height="30px" width="30px">
+               </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+               <form class="navbar-form navbar-right" action="#" method="GET">
+                  <div class="input-group">
+                     <input type="text" class="form-control" placeholder="Search..." id="query" name="search" value="">
+                     <div class="input-group-btn">
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                     </div>
+                  </div>
+               </form>
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> World</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Bussiness </a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Entertainment</a></li>
+                  <li>
+                     <div class="dropdown">
+                       <button class="dropbtn"><i class="fa fa-angle-down" style="font-size: 17px;
+                         font-weight: 700;" aria-hidden="true"></i>More</button>
+                       <div class="dropdown-content">
+                       <a href="#">Sports</a>
+                       <a href="#">Technology</a>
+                       <a href="#">Travel</a>
+                       <a href="#">Climate</a>
+                       <a href="#">Science</a>
+                       <a href="#">History</a>
+                       </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <div id="wrapper" class="">
+         <div class="container-fluid">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper"  style="margin-top: 50px;">
+               <div class="sidebar_profile">
+                  <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" class="img_circle" height="100px" width="100px">
+               </div>
+               <ul class="sidebar-nav">
+                  
+                  <li>
+                     <a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a>
+                  </li>
+                  <li>
+                     <a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a>
+                  </li>
+                  
+               </ul>
+               <br>
+               <div class="sidebar_createprofile">
+                  <button class="btn_create">Create</button>
+               </div>
+               
+            </div>
+            <!-- /#sidebar-wrapper -->
+            <!-- Page Content -->
+            <div id="content-wrapper" class="content-wrapper box_shadow">
+               <div class="container-fluid">
+                  <div class="row">
+                    <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'tab_Username')" id="defaultOpen">Username</button>
+  <button class="tablinks" onclick="openCity(event, 'tab_Phone')">Phone</button>
+  <button class="tablinks" onclick="openCity(event, 'tab_Password')">Password</button>
+  <button class="tablinks" onclick="openCity(event, 'tab_Email')">Email</button>
+  <button class="tablinks" onclick="openCity(event, 'tab_Urllink')">Url link</button>
+</div>
+
+<div id="tab_Username" class="tabcontent">
+  
+    <div class="input_group">
+      <label class="form_label">Username</label>
+      <input type="text" name="Username" id="txt_username" placeholder="Enter username" maxlength="50" class="form_control">
+      <button class="btn_submit">Save</button>
+    </div>
+    <br>
+    <div class="input_group">
+       <form>
+          <fieldset>
+               <legend>Similar available username</legend>
+               <p>John_Doe</p>
+               <p>John_Doe112</p>
+               <p>Doe_john</p>
+          </fieldset>
+       </form>
+    </div>
+    
+    
+</div>
+
+<div id="tab_Phone" class="tabcontent">
+    <div class="input_group">
+      <label class="form_label">Phone</label>
+      <input type="text" name="Phone" maxlength="10" id="txt_phone" placeholder="Enter phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form_control">
+      <button class="btn_submit">Save</button>
+    </div> 
+</div>
+
+<div id="tab_Password" class="tabcontent">
+  <div class="input_group">
+      <label class="form_label">Password</label>
+      <input type="Password" name="Password" maxlength="50" id="txt_password" placeholder="Enter password"  class="form_control">
+    </div>
+    <div class="input_group">
+      <label class="form_label">Confirm Password</label>
+      <input type="Password" name="ConfirmPassword" maxlength="50" id="txt_confirmpassword" placeholder="Enter confirm password"  class="form_control">
+      <button class="btn_submit">Save</button>
+    </div> 
+</div>
+
+
+<div id="tab_Email" class="tabcontent">
+  <div class="input_group">
+      <label class="form_label">Email</label>
+      <input type="Email" name="Email" maxlength="50" id="txt_email" placeholder="Enter email" class="form_control">
+      <button class="btn_submit">Save</button>
+    </div>
+</div>
+
+
+<div id="tab_Urllink" class="tabcontent">
+  <div class="input_group">
+      <label class="form_label">Url link</label>
+      <input type="Url" name="Url" id="txt_url" placeholder="Enter url" class="form_control">
+      <button class="btn_submit">Save</button>
+    </div>
+</div>
+                  </div>
+                  
+               </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+         </div>
+      </div>
+      <!-- /#wrapper -->
+      <script type="text/javascript">
+         $(document).ready(function(){
+           $("#menu-toggle").click(function(e) {
+              e.preventDefault();
+              $("#wrapper").toggleClass("toggled");
+          });
+         });
+
+
+         function openCity(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+         
+      </script>
+   </body>
+</html>
