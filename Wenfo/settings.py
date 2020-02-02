@@ -81,11 +81,16 @@ WSGI_APPLICATION = 'Wenfo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+'default': {
+'ENGINE': 'django.db.backends.mysql',
+'HOST': 'dev.sanmed.ca',
+'PORT': '3306',
+'NAME': 'wenfo',
+'USER': 'pythonmate',
+'PASSWORD': 'pythonmate@26Jan20',
+}
 }
 
 

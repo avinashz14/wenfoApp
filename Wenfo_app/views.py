@@ -1,15 +1,8 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
-from . models import User
 from django.shortcuts import render
-import request
-from django.contrib.auth import authenticate
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth import get_user_model
-from django.contrib.auth import login,logout
+from django.contrib.auth import login
 from django.urls import reverse
-from django.http import Http404, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from . models import User
@@ -34,22 +27,36 @@ class SigninView(TemplateView):
 	def post(self, request, *args, **kwargs):
 		username = request.POST.get('username')
 		password= request.POST.get('password')
-		user = User.objects.get(username=username) 
-		login(request,user)
+		user = authenticate(username = username, password = password)
+		if user:
+			login(request,user)
 		return HttpResponseRedirect(reverse('dashboard'))
 
 	def get(self, request, *args, **kwargs):
 		if request.user.is_authenticated:
 			return HttpResponseRedirect(reverse('dashboard'))
-			
+
 		return render(request,'signin.html')
 
 
 class DashboardView(TemplateView):
-    template_name = "dashboard.html"
+	template_name = "dashboard.html"
 
 class CreateprofileView(TemplateView):
+	template_name = 'createprofile.html'
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
+
+	def get_context_data(self, **kwargs):
+		# Call the base implementation first to get a context
+		context = super().get_context_data(**kwargs)
+		# Add in a QuerySet of all the books
+		context['user'] = self.request.user
+		return context
+
 	def post(self, request, *args, **kwargs):
+		context = super(CreateprofileView, self).get_context_data(*args, **kwargs)
 		user= request.user
 
 		if 'username' in request.POST:
@@ -58,33 +65,27 @@ class CreateprofileView(TemplateView):
 			update_user.username = username
 			update_user.save()
 
-		if 'email' in request.POST:
-			email = request.POST.get('email')
-			update_user = User.objects.get(username=user.username)
-			update_user.email = email
-			update_user.save()
-
 		if 'phone' in request.POST:
 			phone = request.POST.get('phone')
-			update_user = User.objects.get(username=user.username)
-			update_user.phone = phone
-			update_user.save()
+			user.phone = phone
+			user.save()
 
 		if 'url_link' in request.POST:
 			url_link = request.POST.get('url_link')
-			update_user = User.objects.get(username=user.username)
-			update_user.url_link = url_link
-			update_user.save()
+			user = User.objects.get(username=user.username)
+			user.url_link = url_link
+			user.save()
 
 		if 'password' in request.POST:
 			password= request.POST.get('password')
 			confirm_password= request.POST.get('confirm_password')
+			context["page"] = "change_password"
+			context["status"] = "PasswordNotMatched"
 			if password == confirm_password:
-				update_user = User.objects.get(username=user.username)
-				update_user.password = password
-				update_user.save()
-		return HttpResponseRedirect(reverse('createprofile'))
+					user = request.user
+					user.set_password(password)
+					user.save()
+					context["status"] = "Success"
+		return super(TemplateView, self).render_to_response(context)
 
 
-	def get(self, request, *args, **kwargs):			
-		return render(request,'createprofile.html')

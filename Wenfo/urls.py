@@ -19,8 +19,8 @@ from Wenfo_app.views import SignupView,SigninView,DashboardView,CreateprofileVie
 
 urlpatterns = [
     path('admin/', admin.site.urls,name="admin"),
-    path('signup/', SignupView.as_view(),name="signup"),
-    path('signin/', SigninView.as_view(),name="signin"),
-    path('dashboard/', DashboardView.as_view(),name="dashboard"),
+    path('accounts/signup/', SignupView.as_view(),name="signup"),
+    path('accounts/login/', SigninView.as_view(),name="signin"),
+    path('', DashboardView.as_view(),name="dashboard"),
     path('createprofile/', CreateprofileView.as_view(),name="createprofile"),
 ]

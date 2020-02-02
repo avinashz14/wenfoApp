@@ -93,7 +93,7 @@
                     <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'tab_Username')" id="defaultOpen">Username</button>
   <button class="tablinks" onclick="openCity(event, 'tab_Phone')">Phone</button>
-  <button class="tablinks" onclick="openCity(event, 'tab_Password')">Password</button>
+  <button class="tablinks" onclick="openCity(event, 'tab_Password')" id="changePassword">Password</button>
   <button class="tablinks" onclick="openCity(event, 'tab_Email')">Email</button>
   <button class="tablinks" onclick="openCity(event, 'tab_Urllink')">Url link</button>
 </div>
@@ -131,15 +131,23 @@
 </div>
 
 <div id="tab_Password" class="tabcontent">
+      <form action="{% url 'createprofile' %}" method="post" >
+        {% csrf_token %}
+          {% if status == "PasswordNotMatched" %}
+              <div class="alert alert-warning"  style="margin-top:15px;"  role="alert"> Password and Confirm password must be same.</div>
+          {% elif status == "Success" %}
+              <div class="alert alert-success"  style="margin-top:15px;"  role="alert">Your password is successfully changed, Thanks.</div>
+          {% endif %}
   <div class="input_group">
       <label class="form_label">Password</label>
-      <input type="Password" name="Password" maxlength="50" id="txt_password" placeholder="Enter password"  class="form_control">
+      <input type="Password" name="password" maxlength="50" id="txt_password" placeholder="Enter password"  class="form_control">
     </div>
     <div class="input_group">
       <label class="form_label">Confirm Password</label>
-      <input type="Password" name="ConfirmPassword" maxlength="50" id="txt_confirmpassword" placeholder="Enter confirm password"  class="form_control">
-      <button class="btn_submit">Save</button>
-    </div> 
+      <input type="Password" name="confirm_password" maxlength="50" id="txt_confirmpassword" placeholder="Enter confirm password"  class="form_control">
+      <button class="btn_submit" type="submit">Save</button>
+    </div>
+      </form>
 </div>
 
 
@@ -176,7 +184,7 @@
          });
 
 
-         function openCity(evt, tabName) {
+         function openCity(evt="none", tabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -188,11 +196,19 @@
   }
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
+
 }
 
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-         
+         if ("{{ page }}" == "change_password")
+         {
+document.getElementById("changePassword").click();
+         }
+else {
+    document.getElementById("defaultOpen").click();
+
+         }
+
       </script>
    </body>
 </html>
