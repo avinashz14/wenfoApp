@@ -17,7 +17,10 @@
    </head>
    <body class="signup_body">
       <div class="signup-form signin-form">
-         <form action="/examples/actions/confirmation.php" method="post">
+         {% csrf_token %}
+         <form action="{% url 'signin' %}" method="post">
+            {% csrf_token %}
+         
             <h2 class="form_heading">Wenfo</h2>
             
             <div class="form-group">
@@ -30,7 +33,7 @@
             <div class="form-group">
                <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                  <input type="text" class="form-control" name="password" placeholder="Password" required="required">
+                  <input type="password" class="form-control" name="password" placeholder="Password" required="required">
                </div>
             </div>
             

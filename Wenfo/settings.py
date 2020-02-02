@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'Wenfo_app'
 ]
 
+AUTH_USER_MODEL = 'Wenfo_app.User'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

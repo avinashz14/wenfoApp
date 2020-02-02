@@ -18,9 +18,9 @@ from django.urls import path
 from Wenfo_app.views import SignupView,SigninView,DashboardView,CreateprofileView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('signup/', SignupView.as_view()),
-    path('signin/', SigninView.as_view()),
-    path('dashboard/', DashboardView.as_view()),
-    path('createprofile/', CreateprofileView.as_view()),
+    path('admin/', admin.site.urls,name="admin"),
+    path('signup/', SignupView.as_view(),name="signup"),
+    path('signin/', SigninView.as_view(),name="signin"),
+    path('dashboard/', DashboardView.as_view(),name="dashboard"),
+    path('createprofile/', CreateprofileView.as_view(),name="createprofile"),
 ]

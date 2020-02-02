@@ -99,11 +99,13 @@
 </div>
 
 <div id="tab_Username" class="tabcontent">
-  
     <div class="input_group">
-      <label class="form_label">Username</label>
-      <input type="text" name="Username" id="txt_username" placeholder="Enter username" maxlength="50" class="form_control">
-      <button class="btn_submit">Save</button>
+      <form action="{% url 'createprofile' %}" method="post" >
+        {% csrf_token %}
+        <label class="form_label">Username</label>
+        <input type="text" name="username" id="txt_username" placeholder="Enter username" maxlength="50" class="form_control">
+        <button  value="submit" type="submit" class="btn_submit">Save</button>
+      </form>
     </div>
     <br>
     <div class="input_group">
