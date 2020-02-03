@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://dev.sanmed.ca:3306/wenfo</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="db" uuid="50fa387c-84d5-4d9c-abd8-4718aa4c48bb">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../db.sqlite3</jdbc-url>
+    </data-source>
   </component>
 </project>

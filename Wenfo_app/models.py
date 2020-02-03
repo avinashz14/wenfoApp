@@ -1,17 +1,12 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
+
 
 class User(AbstractUser):
 	mobile_number = models.CharField(blank=True,null=True,max_length=100)
 	loct_of_interest = models.CharField(blank=True,null=True,max_length=100)
 	reward_points = models.IntegerField(blank=True,null=True)
 	url_link = models.CharField(max_length=100,blank=True,null=True)
-
-class Notification(models.Model):
-	title = models.CharField(max_length=100, unique=True, blank=True, null=True)
-	by = models.CharField(max_length=100, blank=True, null=True)
-	image = models.FileField(max_length=100, blank=True, null=True)
-	shown = models.CharField(max_length=100, blank=True, null=True)
 
 class Category(models.Model):
 	name = models.CharField(max_length=100, default="")

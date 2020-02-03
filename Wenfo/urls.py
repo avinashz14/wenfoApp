@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Wenfo_app.views import SignupView,SigninView,DashboardView,CreateprofileView
+
+from Wenfo_app.views import CreateprofileView, DashboardView, SigninView, SignupView
 
 urlpatterns = [
     path('admin/', admin.site.urls,name="admin"),

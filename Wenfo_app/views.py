@@ -1,11 +1,13 @@
-from django.views.generic import TemplateView
-from django.shortcuts import render
-from django.contrib.auth import login
-from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
 from django.utils.decorators import method_decorator
-from . models import User
+from django.views.generic import TemplateView
+
+from .models import User
+
 
 class SignupView(TemplateView):
 	def post(self, request, *args, **kwargs):
