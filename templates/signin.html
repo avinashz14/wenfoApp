@@ -30,12 +30,15 @@
                </div>
             </div>
             
+
             <div class="form-group">
                <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                   <input type="password" class="form-control" name="password" placeholder="Password" required="required">
                </div>
             </div>
+            
+            <span style="color: red">{{ message }}</span>
             
             <div class="form-group">
                <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
@@ -44,7 +47,8 @@
                <button type="submit" class="btn btn-primary btn-lg signin_btn">Sign in</button>
             </div>
          </form>
-         
+                  <div class="text-center">Not already have an account? <a href="{% url 'signup' %}">Register here</a></div>
+
       </div>
    </body>
 </html>

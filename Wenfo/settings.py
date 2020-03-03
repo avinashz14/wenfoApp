@@ -29,7 +29,7 @@ SECRET_KEY = 'obsw#0kj@l-ewjwy@(-1r)%$m$lc7^9q^7xy9*1p=@zn+d4c*#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -83,16 +84,24 @@ WSGI_APPLICATION = 'Wenfo.wsgi.application'
 
 
 DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.mysql',
-'HOST': 'dev.sanmed.ca',
-'PORT': '3306',
-'NAME': 'wenfo',
-'USER': 'pythonmate',
-'PASSWORD': 'pythonmate@26Jan20',
-}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
+
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'www.scienchar.info',
+        'PORT': '3306',
+        'NAME': 'naraddb',
+        'USER': 'naraddb-scriptuser',
+        'PASSWORD': 'System@499447',
+    }
+}
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

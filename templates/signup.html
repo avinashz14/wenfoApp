@@ -12,13 +12,12 @@
       <link rel="stylesheet" href="{% static 'css/wenfo_style.css' %}">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-      <style type="text/css">
-      </style>
+      
    </head>
    <body class="signup_body">
       <div class="signup-form">
          {% csrf_token %}
-         <form action="{% url 'signup' %}" method="post">
+         <form action="{% url 'signup' %}" name="myForm" method="post" onsubmit="return validateForm()">
             {% csrf_token %}
          
             <h2 class="form_heading">Wenfo</h2>
@@ -26,25 +25,25 @@
             <div class="form-group">
                <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" >
                </div>
             </div>
             <div class="form-group">
                <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                  <input type="email" class="form-control" name="email" placeholder="Email Address" required="required">
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" >
                </div>
             </div>
             <div class="form-group">
                <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                  <input type="text" class="form-control" name="phone" placeholder="Mobile Number" required="required">
+                  <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" id="phone" name="phone" placeholder="Mobile Number" >
                </div>
             </div>
             <div class="form-group">
                <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                  <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                  <input type="password" id="txtpassword" class="form-control" name="password" placeholder="Password" >
                </div>
             </div>
             <div class="form-group">
@@ -53,17 +52,60 @@
                   <i class="fa fa-lock"></i>
                   <i class="fa fa-check"></i>
                   </span>
-                  <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+                  <input type="password" id="txtconfirm_password" class="form-control" name="confirm_password" placeholder="Confirm Password" >
                </div>
             </div>
             <div class="form-group">
-               <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+               <label class="checkbox-inline"><input type="checkbox" > I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
             </div>
             <div class="form-group">
-               <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+               <button type="submit"  id="btnsignup" class="btn btn-primary btn-lg">Sign Up</button>
             </div>
          </form>
-         <div class="text-center">Already have an account? <a href="#">Login here</a></div>
+         <div class="text-center">Already have an account? <a href="{% url 'signin' %}">Login here</a></div>
       </div>
-   </body>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <script>
+      function validateForm() {
+        var username = document.forms["myForm"]["username"].value;
+        var email = document.forms["myForm"]["email"].value;
+        var phone = document.forms["myForm"]["phone"].value;
+        var password = document.forms["myForm"]["password"].value;
+        var confirm_password = document.forms["myForm"]["confirm_password"].value;
+
+        if (username == "") {
+          alert("Name must be filled out");
+          return false;
+        }
+
+        else if (email == "") {
+          alert("email must be filled out");
+          return false;
+        }
+
+        else if(phone == "") {
+          alert("Phone must be filled out");
+          return false;
+        }
+
+        else if(password == "") {
+          alert("password must be filled out");
+          return false;
+        }
+
+        else if(confirm_password == "") {
+          alert("Confirm password must be filled out");
+          return false;
+        }
+
+        else if (password != confirm_password) {
+         alert ("\nPassword and Confirm Password did not match: Please try again...") 
+         return false;
+        }
+
+      }
+      </script>
+
+
+       </body>
 </html>

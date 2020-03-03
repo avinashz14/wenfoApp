@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+      <title>Wenfo</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{% static 'css/wenfo_style.css' %}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+      <style type="text/css">
+      </style>
+   </head>
+   <body>
+      <div class="container"></div>
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#menu-toggle" id="menu-toggle">
+                  <!-- <span class="glyphicon glyphicon-list" aria-hidden="true"></span> -->
+                  <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" class="img_circle" height="30px" width="30px">
+               </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+               <form class="navbar-form navbar-right" action="#" method="GET">
+                  <div class="input-group">
+                     <input type="text" class="form-control" placeholder="Search..." id="query" name="search" value="">
+                     <div class="input-group-btn">
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                        <button type="button" class="btn logout_btn"><a href="{% url 'logout_view' %}" class="logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></button>
+                     </div>
+                  </div>
+               </form>
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'worldnews' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> World</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Bussiness </a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Entertainment</a></li>
+                  <li>
+                     <div class="dropdown">
+                       <button class="dropbtn"><i class="fa fa-angle-down" style="font-size: 17px;
+                         font-weight: 700;" aria-hidden="true"></i>More</button>
+                       <div class="dropdown-content">
+                       <a href="#">Sports</a>
+                       <a href="#">Technology</a>
+                       <a href="#">Travel</a>
+                       <a href="#">Climate</a>
+                       <a href="#">Science</a>
+                       <a href="#">History</a>
+                       </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <div id="wrapper" class="">
+         <div class="container-fluid">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper"  style="margin-top: 50px;">
+               <div class="sidebar_profile">
+                  <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" class="img_circle" height="100px" width="100px">
+               </div>
+               <ul class="sidebar-nav">
+                  
+                  <li>
+                     <a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a>
+                  </li>
+                  <li>
+                     <a href="{% url 'edit_profile' %}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a>
+                  </li>
+                  
+               </ul>
+               <br>
+               <div class="sidebar_createprofile">
+                  <button class="btn_create" data-toggle="modal" data-target="#create_modal">Create</button>
+               </div>
+               
+            </div>
+            <!-- /#sidebar-wrapper -->
+            <!-- Page Content -->
+            <div id="content-wrapper" class="content-wrapper box_shadow">
+               <div class="container-fluid">
+                  <br>
+                  <div class="row">
+                     <div class="col-md-9 overflow_content">
+                        
+                        
+                      <div class="row">
+                          <div class="leftcolumn">
+                            <div class="card">
+                              <h2>TITLE HEADING</h2>
+                              <h5>Title description, Dec 7, 2017</h5>
+                              <div class="fakeimg" style="height:200px;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmwlHocwUTpWq0GMe_QYX8F4xOHlGzoN1M3R7MElg8g5NlwpB63Q&s" height="100%" width="100%"></div>
+                              <p>Some text..</p>
+                              <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                            </div>
+                            
+                          </div>
+                        </div>
+
+                     </div>
+                     <div class="col-md-3 box_shadow_left">
+                        <h1>Recommendations</h1>
+                        <ul class="rightsidebar-nav">
+                           <li><a href="#">Recommendations</a></li>
+                           <li><a href="#">Recommendations</a></li>
+                           <li><a href="#">Recommendations</a></li>
+                           <li><a href="#">Recommendations</a></li>
+                           
+
+                        </ul>
+                     </div>
+                  </div>
+                  
+               </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+         </div>
+      </div>
+      <!-- /#wrapper -->
+
+      <!--modals-->
+
+      <div class="modal fade" id="create_modal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add News</h4>
+            </div>
+            <form method="POST" action="{% url 'addnews' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="form_label">Title</label>
+                      <input type="text" name="title" placeholder="Title of the news" class="form_control">
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="form_label">Description</label>
+                      <textarea id="title_description" name="body" placeholder="Description of the news" rows="4" cols="50" class="form_control">
+                      
+                      </textarea>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="form_label">File Upload</label>
+                      <input type="file" name="myfile" class="form_control" style="padding: 0px;">
+                    </div>
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Post</button>
+                </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+
+      <script type="text/javascript">
+         $(document).ready(function(){
+           $("#menu-toggle").click(function(e) {
+              e.preventDefault();
+              $("#wrapper").toggleClass("toggled");
+          });
+         });
+         
+      </script>
+   </body>
+</html>

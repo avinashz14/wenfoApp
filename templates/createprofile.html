@@ -37,11 +37,12 @@
                      <input type="text" class="form-control" placeholder="Search..." id="query" name="search" value="">
                      <div class="input-group-btn">
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                        <button type="button" class="btn logout_btn"><a href="{% url 'logout_view' %}" class="logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></button>
                      </div>
                   </div>
                </form>
                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> World</a></li>
+                  <li><a href="{% url 'worldnews' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> World</a></li>
                   <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Bussiness </a></li>
                   <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Entertainment</a></li>
                   <li>
@@ -66,22 +67,22 @@
          <div class="container-fluid">
             <!-- Sidebar -->
             <div id="sidebar-wrapper"  style="margin-top: 50px;">
-               <div class="sidebar_profile">
+               <a class="sidebar_profile" href="{% url 'dashboard' %}">
                   <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" class="img_circle" height="100px" width="100px">
-               </div>
+               </a>
                <ul class="sidebar-nav">
                   
                   <li>
-                     <a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a>
+                     <a href="{% url 'notification' %}"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a>
                   </li>
-                  <li>
-                     <a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a>
+                  <li style="background: #C0375B;">
+                     <a href="#" style="color:#fff;"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a>
                   </li>
                   
                </ul>
                <br>
                <div class="sidebar_createprofile">
-                  <button class="btn_create">Create</button>
+                  <button class="btn_create" data-toggle="modal" data-target="#create_modal">Create</button>
                </div>
                
             </div>
@@ -92,123 +93,230 @@
                   <div class="row">
                     <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'tab_Username')" id="defaultOpen">Username</button>
-  <button class="tablinks" onclick="openCity(event, 'tab_Phone')">Phone</button>
+  <button class="tablinks" onclick="openCity(event, 'tab_Phone')" id="changePhone">Phone</button>
   <button class="tablinks" onclick="openCity(event, 'tab_Password')" id="changePassword">Password</button>
-  <button class="tablinks" onclick="openCity(event, 'tab_Email')">Email</button>
-  <button class="tablinks" onclick="openCity(event, 'tab_Urllink')">Url link</button>
+  <button class="tablinks" onclick="openCity(event, 'tab_Email')" id="changeEmail">Email</button>
+  <button class="tablinks" onclick="openCity(event, 'tab_Urllink')" id="changeUrllink">Url link</button>
 </div>
 
 <div id="tab_Username" class="tabcontent">
-    <div class="input_group">
-      <form action="{% url 'createprofile' %}" method="post" >
+      <form action="{% url 'edit_profile' %}" method="post" >
         {% csrf_token %}
+        
+        {% if status == "change_username" %}
+          <p class="alert alert-success"  style="margin-top:15px;"  role="alert">Your username is successfully changed, Thanks.</p>
+        {% endif %}
+
+        {% if status == "not_change_username" %}
+          <p class="alert alert-danger"  style="margin-top:15px;"  role="alert">This username is already exist.</p>
+        {% endif %}
+
+    <div class="input_group">        
         <label class="form_label">Username</label>
-        <input type="text" name="username" id="txt_username" placeholder="Enter username" maxlength="50" class="form_control">
+        <input type="text" name="username" value="{{user.username}}" id="txt_username" placeholder="Enter username" maxlength="50" class="form_control">
         <button  value="submit" type="submit" class="btn_submit">Save</button>
-      </form>
+        </div>
+          </form>
+        <br>
+     
+        <div class="input_group">
+           <form>
+              <fieldset>
+                   <legend>Similar available username</legend>
+                   {% for username in user_names %}
+                   <p>{{username}}</p>
+                   {% endfor %}
+              </fieldset>
+           </form>
+        </div>    
+      </div>
+  
+    <div id="tab_Phone" class="tabcontent">
+  
+     <form action="{% url 'edit_profile' %}" method="post" >
+            {% csrf_token %}
+
+              {% if status == "change_phone" %}
+                  <div class="alert alert-success"  style="margin-top:15px;"  role="alert">Your phone number is successfully changed, Thanks.</div>
+              {% endif %}
+        <div class="input_group">
+        <label class="form_label">Phone</label>
+          <div id="addbtn_phone_div">
+          <input type="text" name="Phone" maxlength="10" value="{{number}}" id="txt_phone" placeholder="Enter phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form_control">
+          </div>
+          <button id="addbtn_phone" type="button" class="addbtn_phone"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          <button type="submit" class="btn_submit">Save</button>
+        </div> 
+    </form>
     </div>
-    <br>
-    <div class="input_group">
-       <form>
-          <fieldset>
-               <legend>Similar available username</legend>
-               <p>John_Doe</p>
-               <p>John_Doe112</p>
-               <p>Doe_john</p>
-          </fieldset>
+
+    <div id="tab_Password" class="tabcontent">
+        <form action="{% url 'edit_profile' %}" method="post" >
+            {% csrf_token %}
+              {% if status == "PasswordNotMatched" %}
+                  <div class="alert alert-warning"  style="margin-top:15px;"  role="alert"> Password and Confirm password must be same.</div>
+              {% elif status == "Success" %}
+                  <div class="alert alert-success"  style="margin-top:15px;"  role="alert">Your password is successfully changed, Thanks.</div>
+              {% endif %}
+            <div class="input_group">
+                <label class="form_label">Password</label>
+                <input type="Password" name="password" maxlength="50" id="txt_password" placeholder="Enter password"  class="form_control">
+                
+              </div>
+              <div class="input_group">
+                <label class="form_label">Confirm Password</label>
+                <input type="Password" name="confirm_password" maxlength="50" id="txt_confirmpassword" placeholder="Enter confirm password"  class="form_control">
+                <button class="btn_submit" type="submit">Save</button>
+              </div>
+              </form>
+          </div>
+
+
+
+
+    <div id="tab_Email" class="tabcontent">
+        <form action="{% url 'edit_profile' %}" method="post" >
+              {% csrf_token %}
+
+                {% if status == "change_email" %}
+                    <div class="alert alert-success"  style="margin-top:15px;"  role="alert">Your email is successfully changed, Thanks.</div>
+                {% endif %}
+          <div class="input_group">
+            <label class="form_label">Email</label>
+            <input type="Email" name="Email" value="{{user.email}}" maxlength="50" id="txt_email" placeholder="Enter email" class="form_control">
+            <button class="btn_submit">Save</button>
+          </div>
        </form>
-    </div>
-    
-    
-</div>
-
-<div id="tab_Phone" class="tabcontent">
-    <div class="input_group">
-      <label class="form_label">Phone</label>
-      <input type="text" name="Phone" maxlength="10" id="txt_phone" placeholder="Enter phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form_control">
-      <button class="btn_submit">Save</button>
-    </div> 
-</div>
-
-<div id="tab_Password" class="tabcontent">
-      <form action="{% url 'createprofile' %}" method="post" >
-        {% csrf_token %}
-          {% if status == "PasswordNotMatched" %}
-              <div class="alert alert-warning"  style="margin-top:15px;"  role="alert"> Password and Confirm password must be same.</div>
-          {% elif status == "Success" %}
-              <div class="alert alert-success"  style="margin-top:15px;"  role="alert">Your password is successfully changed, Thanks.</div>
-          {% endif %}
-  <div class="input_group">
-      <label class="form_label">Password</label>
-      <input type="Password" name="password" maxlength="50" id="txt_password" placeholder="Enter password"  class="form_control">
-    </div>
-    <div class="input_group">
-      <label class="form_label">Confirm Password</label>
-      <input type="Password" name="confirm_password" maxlength="50" id="txt_confirmpassword" placeholder="Enter confirm password"  class="form_control">
-      <button class="btn_submit" type="submit">Save</button>
-    </div>
-      </form>
-</div>
+      </div>
 
 
-<div id="tab_Email" class="tabcontent">
-  <div class="input_group">
-      <label class="form_label">Email</label>
-      <input type="Email" name="Email" maxlength="50" id="txt_email" placeholder="Enter email" class="form_control">
-      <button class="btn_submit">Save</button>
-    </div>
-</div>
+    <div id="tab_Urllink" class="tabcontent">
 
+      <form action="{% url 'edit_profile' %}" method="post" >
+            {% csrf_token %}
 
-<div id="tab_Urllink" class="tabcontent">
-  <div class="input_group">
-      <label class="form_label">Url link</label>
-      <input type="Url" name="Url" id="txt_url" placeholder="Enter url" class="form_control">
-      <button class="btn_submit">Save</button>
-    </div>
-</div>
-                  </div>
-                  
+              {% if status == "change_urllink" %}
+                  <div class="alert alert-success"  style="margin-top:15px;"  role="alert">Your url  is successfully changed, Thanks.</div>
+              {% endif %}
+              
+        <div class="input_group">
+            <label class="form_label">Url link</label>
+            <div id="addbtn_url_div">
+              <input type="Url" name="Url" id="txt_url" placeholder="Enter url" class="form_control">
+            </div>
+            <button type="button" id="addbtn_url" class="addbtn_phone"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button type="submit"  class="btn_submit">Save</button>
+          </div>
+    </form>
+      </div>
+  
+  </div>
                </div>
             </div>
             <!-- /#page-content-wrapper -->
          </div>
       </div>
-      <!-- /#wrapper -->
-      <script type="text/javascript">
-         $(document).ready(function(){
-           $("#menu-toggle").click(function(e) {
-              e.preventDefault();
-              $("#wrapper").toggleClass("toggled");
-          });
-         });
 
+      <div class="modal fade" id="create_modal" role="dialog">
+        <div class="modal-dialog">
+        
 
-         function openCity(evt="none", tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add News</h4>
+            </div>
+            <form method="POST" action="{% url 'addnews' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="form_label">Title</label>
+                      <input type="text" name="title" required="true" placeholder="Title of the news" class="form_control">
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="form_label">Description</label>
+                      <textarea id="title_description" name="body" required="true" placeholder="Description of the news" rows="4" cols="50" class="form_control">
+                      
+                      </textarea>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="form_label">File Upload</label>
+                      <input type="file" name="myfile" class="form_control" style="padding: 0px;">
+                    </div>
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-default">Post</button>
+                </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  });
+
+  function openCity(evt="none", tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-
-}
 
 // Get the element with id="defaultOpen" and click on it
-         if ("{{ page }}" == "change_password")
-         {
-document.getElementById("changePassword").click();
-         }
-else {
-    document.getElementById("defaultOpen").click();
 
-         }
+if ("{{ page }}" == "change_password"){
+  document.getElementById("changePassword").click();
+}else if ("{{ page }}" == "change_phone") {
+  document.getElementById("changePhone").click();
+}else if ("{{ page }}" == "change_email") {
+  document.getElementById("changeEmail").click();
+}else if ("{{ page }}" == "change_urllink") {
+  document.getElementById("changeUrllink").click();
+}else {
+  document.getElementById("defaultOpen").click();
+}
 
-      </script>
-   </body>
+
+ $("#addbtn_phone").click(function(){
+
+   $('#addbtn_phone_div').append('<input type="text" name="Phone" maxlength="10" id="txt_phone" placeholder="Enter phone" class="form_control">')
+
+      });
+
+
+ $("#addbtn_url").click(function(){
+  $('#addbtn_url_div').append('<input type="Url" name="Url" id="txt_url" placeholder="Enter url" class="form_control">')
+  });
+
+</script>
+</body>
 </html>
