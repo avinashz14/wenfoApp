@@ -501,7 +501,13 @@ h1,h2,h3,h4,h5,h6{
 .modal-header{
   background: #C0375B;
 }
-
+.model-header{
+  background: white;
+  color:#C0375B ;
+}
+.model-p{
+  color: black;
+}
 .modal-title {
     margin: 0;
     line-height: 1.42857143;

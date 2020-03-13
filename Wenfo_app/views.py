@@ -9,6 +9,17 @@ from django.views.generic import TemplateView
 from django.contrib.auth import logout
 import random
 
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.forms import (
+    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
+)
+from django.shortcuts import resolve_url
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView,PasswordResetConfirmView, PasswordResetForm
+
+
 from .models import User,News,Notification,PhoneNumber,UrlLink
 
 
@@ -213,4 +224,11 @@ def logout_view(request):
     logout(request)
     
     return HttpResponseRedirect(reverse('signin'))
+
+def password_reset_view(request):
+	PasswordResetForm(request)
+
+	return HttpResponseRedirect(reverse('PasswordResetDone'))
+
+
 
