@@ -1,13 +1,13 @@
 #send your first email
-# using SendGrid's Python Library
+# using SendGrid's Python Library   
 # https://github.com/sendgrid/sendgrid-python
 import sendgrid
 import os
 from sendgrid.helpers.mail import *
 
 sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
-from_email = Email("test@example.com")
-to_email = To("test@example.com")
+from_email = Email("prajapati143a@gmail.com")
+to_email = To("prajapatiavinash900@gmail.com")
 subject = "Sending with SendGrid is Fun"
 content = Content("text/plain", "and easy to do anywhere, even with Python")
 mail = Mail(from_email, to_email, subject, content)
