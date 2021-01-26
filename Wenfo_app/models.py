@@ -33,7 +33,7 @@ class News(models.Model):
 	title = models.CharField(max_length=100)
 	slug = models.SlugField(max_length=100, blank=True, null=True)
 	image = models.FileField(upload_to='images/', null=True, verbose_name="")
-	body = models.TextField(max_length=100, blank=True, null=True)
+	body = models.TextField(max_length=1000, blank=True, null=True)
 	author = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
 	keywords = models.ManyToManyField(Keyword, blank=True)
 	date = models.DateField(auto_now_add=True, blank=True)
